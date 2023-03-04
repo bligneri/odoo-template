@@ -16,8 +16,14 @@ dependencies:
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
-   build: |
-     ./build.sh
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: !include
+      type: string
+      path: build.sh
+
+      #hooks:
+      #build: |
+      #./build.sh
      #pipenv install --system --deploy
 
 # The relationships of the application with services or other applications.
@@ -52,9 +58,9 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 512
 
-source:
-  operations:
-    auto-update:
-      command: |
-        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
+#source:
+#  operations:
+#    auto-update:
+#      command: |
+#        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
     

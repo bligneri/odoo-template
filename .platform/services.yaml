@@ -5,9 +5,7 @@
 #
 # See https://docs.platform.sh/configuration/services.html
 db:
-  type: "mariadb:10.4"
+  type: "postgresql:15"
   disk: 2048
 
-cache:
-  type: "redis:5.0"
 

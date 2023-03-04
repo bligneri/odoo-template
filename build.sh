@@ -13,4 +13,5 @@ cd $PATH_ODOO
 pip install ./
 
 # Move the files to /tmp
-mv $PATH_ODOO /tmp/odoo
+cd
+mv $PATH_ODOO /tmp

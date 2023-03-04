@@ -2,5 +2,5 @@
 
 ODOOVERSION=$(cat odoo_version)
 
-git clone https://www.github.com/odoo/odoo --depth 1 --branch ODOOVERSION /odoo
+git clone https://www.github.com/odoo/odoo --depth 1 --branch ODOOVERSION .
 

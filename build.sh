@@ -23,3 +23,5 @@ git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH
 # Install dependencies
 cd $PATH_ODOO
 pip install ./
+
+# Run 

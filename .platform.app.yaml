@@ -4,7 +4,7 @@
 # See https://docs.platform.sh/user_guide/reference/platform-app-yaml.html
 
 # The name of this app. Must be unique within a project.
-name: 'app'
+name: 'odoo'
 
 # The runtime the application uses.
 type: 'python:3.8'
@@ -57,6 +57,11 @@ web:
 
 # The size of the persistent disk of the application (in MB).
 disk: 2500
+
+mounts:
+  'odoo':
+    source: local
+    source_path: 'odoo'
 
 #source:
 #  operations:

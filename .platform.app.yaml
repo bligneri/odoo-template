@@ -21,10 +21,9 @@ hooks:
       type: string
       path: build.sh
 
-      #hooks:
-      #build: |
-      #./build.sh
-     #pipenv install --system --deploy
+    deploy: !include
+      type: string
+      path: deploy.sh
 
 # The relationships of the application with services or other applications.
 #
@@ -58,5 +57,5 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2500
 
-#mounts:
-#    "odoo": "shared:files/odoo"
+mounts:
+    "odoo": "shared:files/odoo"

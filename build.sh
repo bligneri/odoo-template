@@ -5,8 +5,10 @@ ODOOVERSION=$(cat odoo_version)
 
 PATH_ODOO="./odoo2"
 
+# DEBUG
 #Delete the current ./odoo
-rm -rf ./odoo
+#rm -rf ./odoo
+# END DEBUG
 
 #clone the repo
 git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH_ODOO

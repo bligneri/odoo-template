@@ -58,10 +58,9 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2500
 
+
 mounts:
-  'odoo':
-    source: local
-    source_path: 'odoo'
+    "odoo": "shared:files/odoo"
 
 #source:
 #  operations:

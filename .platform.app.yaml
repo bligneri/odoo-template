@@ -56,7 +56,7 @@ web:
             expires: 1h
 
 # The size of the persistent disk of the application (in MB).
-disk: 512
+disk: 2500
 
 #source:
 #  operations:

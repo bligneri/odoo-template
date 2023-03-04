@@ -15,7 +15,7 @@ else
     PATH_ODOO="/app"
 fi
 
-PATH_ODOO="${PATH_ODOO}/odoo"
+PATH_ODOO="${PATH_ODOO}/odoo-src"
 
 #clone the repo
 git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH_ODOO
@@ -24,4 +24,6 @@ git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH
 cd $PATH_ODOO
 pip install ./
 
-# Run 
+# Move the files to the final destination
+cd
+mv $PATH_ODOO odoo

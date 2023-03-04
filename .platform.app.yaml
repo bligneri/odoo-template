@@ -17,7 +17,8 @@ dependencies:
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
    build: |
-       pipenv install --system --deploy
+     ./build.sh
+     #pipenv install --system --deploy
 
 # The relationships of the application with services or other applications.
 #

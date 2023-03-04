@@ -17,5 +17,5 @@ pip install ./
 
 # Move the files to /tmp
 cd
-mv $PATH_ODOO /tmp
-ls -la /tmp/odoo2
+mv $PATH_ODOO /tmp/odoo2
+echo `ls /tmp/odoo2` > /tmp/files

@@ -24,6 +24,3 @@ rsync -az --exclude=.git $PLATFORM_CACHE_DIR/$APP_NAME/* $PLATFORM_APP_DIR/src/
 
 # bit of debug ;-)
 echo `ls -la $PLATFORM_CACHE_DIR/$APP_NAME` > $PLATFORM_CACHE_DIR/src/cache_files.txt
-
-# Install the server
-pip install uwsgi

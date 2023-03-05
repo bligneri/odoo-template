@@ -12,10 +12,12 @@ python3.11 -m pip install --upgrade pip
 #clone the repo
 # Note: Should be smarter and only download the code if not there for the $ODOOVERSION
 # If the code is already thre, no need to change it
-git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION odoo-src
+# Using the PLATFORM.sh cache
+
+git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PLATFORM_CACHE_DIR/odoo-src
 
 # Install dependencies 
-cd odoo-src && pip install ./
+cd $PLATFORM_CACHE_DIR/odoo-src && pip install ./
 
 # Install the server
 pip install uwsgi

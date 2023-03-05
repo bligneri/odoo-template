@@ -4,7 +4,7 @@ APP_DIR=`pwd`
 # Copy the add_ons in their new home
 # Clean the addons directory and copy from the source
 # Rsync the whole tree
-rsync -a ./odoo-src ./odoo
+rsync -az $PLATFORM_CACHE_DIR/odoo-src ./odoo
 #rm -rf "$APP_DIR/odoo/addons" && cp -r "$APP_DIR/odoo-src/" "$APP_DIR/odoo/"
 #ADDON_PATH=$APP_DIR/odoo/addons
 

@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-# Copy the /tmp/odoo files into the mount
+# what was there?
+cat /tmp/files
+
+# Can we copy the content of the build to /app/odoo ?
 cp -r /tmp/odoo /app/odoo
 
+# can we copy a file?
 cp /tmp/files /app/dir_content.txt
 
-# Launch the service
+# Can we launch odoo?
 cd /app/odoo/odoo
 ./odoo-bin

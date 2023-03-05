@@ -20,7 +20,6 @@ git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH
 cd $PATH_ODOO/odoo
 pip install ./
 
-# Move the files to /tmp
-#cd
-#mv $PATH_ODOO /tmp/odoo2
-#echo `ls /tmp/odoo2` > /tmp/files
+# Debug our build process: is there something in /tmp ?
+echo `ls -la /tmp/odoo` > /tmp/files
+echo `ls -la /tmp/odoo/odoo` >> /tmp/files

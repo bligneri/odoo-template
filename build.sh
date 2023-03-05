@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -eu
 
 # get the odoo version to clone
 ODOOVERSION=$(cat odoo_version)
@@ -20,5 +20,3 @@ git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH
 cd $PATH_ODOO/odoo
 pip install ./
 
-# We now need to copy the add-ons to a directory that will persist after the build
-cp -r $PATH_ODOO/odoo/odoo/addons/ /app/odoo/addons/

@@ -32,7 +32,6 @@ hooks:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "db:postgresql"
-  disk: 2048
 
   #web:
   # Odoo listen on port 8069

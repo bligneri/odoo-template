@@ -18,4 +18,12 @@ DB_NAME=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].pa
 # Initialize the server and stop
 # We want to use WSGI to access it
 cd ./odoo/odoo/
-./odoo-bin --init --addons-path=$ADDON_PATH --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --stop-after-init
+
+# When the DB is alredy initialized: log to syslog
+python3.11 ./odoo-bin --addons-path=$ADDON_PATH --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --syslog
+
+
+# To initialized the DB
+#python3.11 ./odoo-bin -i base --addons-path=$ADDON_PATH --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME
+#web@app.0:~/odoo/odoo$ python3.11 odoo-bin -i base --data-dir=/app/odoo/data/ --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME
+

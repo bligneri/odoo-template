@@ -39,7 +39,7 @@ odoo.multi_process = False # Nah!
 odoo.conf.server_wide_modules = ['web']
 conf = odoo.tools.config
 
-#conf['addons_path'] = '/home/YOUR-USERNAME/my_apps/odoo/odoo/addons'
+conf['addons_path'] = '/app/odoo/addons'
 
 conf['db_user'] = database['username']
 conf['db_password'] =  database['password']

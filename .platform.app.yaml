@@ -24,9 +24,10 @@ web:
     upstream:
       socket_family: tcp
       protocol: http
-    start: !include
-      type: string
-      path: run.sh 
+    commands:
+      start: !include
+        type: string
+        path: run.sh 
 
 # The relationships of the application with services or other applications.
 #

@@ -48,5 +48,5 @@ relationships:
 disk: 2500
 
 mounts:
-  "odoo": "shared:files/odoo"
-  "local": "shared:files/.local"
+  "/odoo": "shared:files/odoo"
+  "/.local": "shared:files/local"

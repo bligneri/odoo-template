@@ -15,4 +15,4 @@ python3.11 -m pip install --upgrade pip
 git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION odoo-src
 
 # Install dependencies 
-pip install odoo-src
+cd odoo-src && pip install ./

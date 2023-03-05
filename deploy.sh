@@ -22,8 +22,8 @@ DB_NAME=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].pa
 # You also need to drop your database (or it will cause errors)
 DIRECTORY="./local/share/Odoo"
 
-if [ ! -d "$DIRECTORY"]; then
+if [ ! -d "$DIRECTORY" ]; then
 	cd ./src/odoo/
-	# Initilize te
+	# Initilize the database
 	python3.11 ./odoo-bin -i base --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --http-port=$PORT --stop-after-init
 fi

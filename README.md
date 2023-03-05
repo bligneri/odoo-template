@@ -17,9 +17,21 @@ Odoo is an open source ERP with a large user base.
 * Automatic TLS certificates
 * Pipfile-based build
 
-Because odoo is a python binary, it is installed directly into `/app/.global/bin/odoo` and is part of the PATH of every shell and program. 
+## Odoo version selection
 
-The install is quite fast because all the python dependencies are cached and will only be updated if a new version is available.
+You can change the `odoo_version` text file and it should work
+
+It as only been tested with the `16.0` version of odoo. For other versions, you may have to tweak:
+* The python version of the application 
+* deploy.sh: The command line options of the oddo initialization
+* run.sh: The command line options to launch odoo
+
+## Building should be fast after the first pass
+
+The install is quite fast because we are using the platform.sh cache system:
+* After the first `git clone` of the Odoo tree, it should be a simple quick git check for the files (as the branch is fixed and should not change)
+* Every python module is cached (wheel files) including `odoo` itself
+* When new versions will be launched, it will require some work but only as needed
 
 ## Customizations
 
@@ -32,6 +44,11 @@ All the platform.sh specifics are in:
 * `odoo_wssgi.py`: This file contains the various argumennts require by odoo. In particular: directories for plugins, where to write the files, etc. Customize as needed
 * `conf/uwsgi.py`: Tune this file according to your needs. The default one should work for most use cases.
 
+## What to do once it is deployed
+
+* Log in into the admin with `admin`, `admin` and change your password 
+* Upgrades from the web interface are not working. 
+* Most certainly not ready for production: consider it experimental or a starting point to meet your needs.
 
 ## References
 

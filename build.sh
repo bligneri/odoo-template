@@ -16,3 +16,6 @@ git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION odoo-
 
 # Install dependencies 
 cd odoo-src && pip install ./
+
+# Install the server
+pip install uwsgi

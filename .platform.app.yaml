@@ -4,15 +4,10 @@
 # See https://docs.platform.sh/user_guide/reference/platform-app-yaml.html
 
 # The name of this app. Must be unique within a project.
-name: 'app'
+name: 'odoo'
 
 # The runtime the application uses.
 type: 'python:3.11'
-
-# The build-time dependencies of the app.
-#dependencies:
-#    python3:
-#       pipenv: "2018.10.13"
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
@@ -27,8 +22,11 @@ hooks:
 
 web:
     upstream:
-        socket_family: tcp
-        protocol: http
+      socket_family: tcp
+      protocol: http
+    start: !include
+      type: string
+      path: run.sh 
 
 # The relationships of the application with services or other applications.
 #

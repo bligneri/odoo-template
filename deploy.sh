@@ -15,14 +15,15 @@ DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].us
 DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password"`
 DB_NAME=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path"`
 
-# Initialize the server and stop
-# We want to use WSGI to access it
-cd ./odoo/odoo/
 
-# When the DB is alredy initialized: log to syslog
-python3.11 ./odoo-bin --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --http-port=$PORT --syslog 
+# When the Odoo has run once -> this directory will exist
+# Do nothint in this case: server is ready to run / nothing to deploy
+# To redeploy: `platform ssh` and then `rm -rf ./local/share/Odoo`
+# You also need to drop your database (or it will cause errors)
+DIRECTORY="./local/share/Odoo"
 
-# To initialized the DB
-#python3.11 ./odoo-bin -i base --addons-path=$ADDON_PATH --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME
-#web@app.0:~/odoo/odoo$ python3.11 odoo-bin -i base --data-dir=/app/odoo/data/ --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME
-
+if [ ! -d "$DIRECTORY"]; then
+	cd ./src/odoo/
+	# Initilize te
+	python3.11 ./odoo-bin -i base --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --http-port=$PORT --stop-after-init
+fi

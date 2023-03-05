@@ -34,19 +34,20 @@ relationships:
   database: "db:postgresql"
   disk: 2048
 
-web:
+  #web:
   # Odoo listen on port 8069
-  upstream:
-    odoo:
-      port: 8069
+  #upstream:
+  #  odoo:
+  #    port: 8069
 
   # Send all trafic to odoo
-  route:
-    "/":
-      upstream: "odoo"
+  #route:
+  #  "/":
+  #   upstream: "odoo"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2500
 
 mounts:
-    "odoo": "shared:files/odoo"
+  "odoo": "shared:files/odoo"
+  "local": "shared:files/.local"

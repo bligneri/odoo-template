@@ -12,7 +12,7 @@ python3.11 -m pip install --upgrade pip
 #clone the repo
 # Note: Should be smarter and only download the code if not there for the $ODOOVERSION
 # If the code is already thre, no need to change it
-# Using the PLATFORM.sh cache
+# Using the PLATFORM.sh cache to avoir redownloading each time
 
 git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PLATFORM_CACHE_DIR/odoo
 
@@ -21,6 +21,9 @@ cd $PLATFORM_CACHE_DIR/odoo && pip install ./
 
 #Copy into the src accessible directory
 rsync -az --exclude=.git $PLATFORM_CACHE_DIR/$APP_NAME/* $PLATFORM_APP_DIR/src/
+
+# bit of debug ;-)
+echo `ls -la $PLATFORM_CACHE_DIR/$APP_NAME` > $PLATFORM_CACHE_DIR/src/cache_files.txt
 
 # Install the server
 pip install uwsgi

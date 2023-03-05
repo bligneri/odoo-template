@@ -35,10 +35,13 @@ relationships:
   disk: 2048
 
 web:
+  # Odoo listen on port 8069
   upstream:
     my-http-service:
       port: 8069
-  routes:
+
+  # Send all trafic to odoo
+  route:
     "/":
       upstream: "my-http-service"
 

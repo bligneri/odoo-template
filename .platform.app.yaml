@@ -35,7 +35,7 @@ relationships:
   disk: 2048
 
 web:
-  upstreams:
+  upstream:
     my-http-service:
       port: 8069
   routes:

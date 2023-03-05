@@ -25,7 +25,6 @@ hooks:
       type: string
       path: deploy.sh
 
-
 web:
     upstream:
         socket_family: tcp
@@ -38,17 +37,6 @@ web:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "db:postgresql"
-
-  #web:
-  # Odoo listen on port 8069
-  #upstream:
-  #  odoo:
-  #    port: 8069
-
-  # Send all trafic to odoo
-  #route:
-  #  "/":
-  #   upstream: "odoo"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2500

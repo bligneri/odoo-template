@@ -3,7 +3,7 @@
 # get the odoo version to clone
 ODOOVERSION=$(cat odoo_version)
 
-PATH_ODOO="./odoo2"
+PATH_ODOO="/tmp/"
 
 # DEBUG
 #Delete the current ./odoo
@@ -14,10 +14,10 @@ PATH_ODOO="./odoo2"
 git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH_ODOO
 
 # Install dependencies
-cd $PATH_ODOO
+cd $PATH_ODOO/odoo
 pip install ./
 
 # Move the files to /tmp
-cd
-mv $PATH_ODOO /tmp/odoo2
-echo `ls /tmp/odoo2` > /tmp/files
+#cd
+#mv $PATH_ODOO /tmp/odoo2
+#echo `ls /tmp/odoo2` > /tmp/files

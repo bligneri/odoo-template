@@ -32,26 +32,15 @@ hooks:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "db:postgresql"
+  disk: 2048
 
-# The configuration of app when it is exposed to the web.
 web:
-    upstream:
-        # Send requests to the app server through a unix socket, whose location
-        # will be defined in an environment variable named SOCKET.
-        socket_family: "unix"
-
-    # Commands are run once after deployment to start the application process.
-    commands:
-       start: "uwsgi --ini conf/uwsgi.ini"
-
-    locations:
-        # The folder from which to serve static assets, for this location.
-        #
-        # This is a filesystem path, relative to the application root.
-        "/":
-            root: "public"
-            passthru: true
-            expires: 1h
+  upstreams:
+    my-http-service:
+      port: 8069
+  routes:
+    "/":
+      upstream: "my-http-service"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2500

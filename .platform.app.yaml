@@ -25,12 +25,6 @@ hooks:
       type: string
       path: deploy.sh
 
-
-
-mounts:
-  "odoo": "shared:files/odoo"
-  "local": "shared:files/.local"
-
 # The relationships of the application with services or other applications.
 #
 # The left-hand side is the name of the relationship as it will be exposed
@@ -54,3 +48,6 @@ relationships:
 # The size of the persistent disk of the application (in MB).
 disk: 2500
 
+mounts:
+  "odoo": "shared:files/odoo"
+  "local": "shared:files/.local"

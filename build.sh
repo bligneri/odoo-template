@@ -3,8 +3,6 @@
 # get the odoo version to clone
 ODOOVERSION=$(cat odoo_version)
 
-PATH_ODOO="/tmp"
-
 # Update to the latest pip
 python3.11 -m pip install --upgrade pip
 
@@ -14,9 +12,7 @@ python3.11 -m pip install --upgrade pip
 #clone the repo
 # Note: Should be smarter and only download the code if not there for the $ODOOVERSION
 # If the code is already thre, no need to change it
-git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH_ODOO/odoo
+git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION odoo-src
 
-# Install dependencies
-cd $PATH_ODOO/odoo
-pip install ./
-
+# Install dependencies 
+pip install odoo-src

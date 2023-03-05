@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Copy the add_ons in their new home
-cp -r /tmp/odoo/odoo/addons /app/odoo/
+# Clean the addons directory and copy from the source
+rm -rf  odoo/addons && cp -r odoo-src/odoo/addons odoo/
 
 # Recover the plaftorm.sh variables required to install odoo 
 DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`

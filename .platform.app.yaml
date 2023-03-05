@@ -37,13 +37,13 @@ relationships:
 web:
   # Odoo listen on port 8069
   upstream:
-    my-http-service:
+    odoo:
       port: 8069
 
   # Send all trafic to odoo
   route:
     "/":
-      upstream: "my-http-service"
+      upstream: "odoo"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2500

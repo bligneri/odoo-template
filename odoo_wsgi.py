@@ -16,13 +16,17 @@ import sys,os
 import odoo
 from platformshconfig import Config
 
+
+#----------------------------------------------------------
+# Platform.sh specific
+#----------------------------------------------------------
 # Get the Platform.sh information for the database
 # Create a new Config object to ease reading the Platform.sh environment variables.
 # You can alternatively use os.environ yourself.
 config = Config()
 
 # The 'database' relationship is generally the name of primary SQL database of an application.
-# That's not required, but much of our default automation code assumes it.' \
+# It is required for odoo
 database = config.credentials('postgresql')
 
  
@@ -37,11 +41,6 @@ conf = odoo.tools.config
 
 #conf['addons_path'] = '/home/YOUR-USERNAME/my_apps/odoo/odoo/addons'
 
-database['host'],
-            'port': database['port'],
-            'dbname': database['path'],
-            'user': database['username'],
-            'password': database['password']
 conf['db_user'] = database['username']
 conf['db_password'] =  database['password']
 conf['db_name'] = database['path']

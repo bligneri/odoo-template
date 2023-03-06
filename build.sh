@@ -21,6 +21,3 @@ cd $PLATFORM_CACHE_DIR/odoo && pip install ./
 
 #Copy into the src accessible directory
 rsync -az --exclude=.git $PLATFORM_CACHE_DIR/$APP_NAME/* $PLATFORM_APP_DIR/src/
-
-# bit of debug ;-)
-echo `ls -la $PLATFORM_CACHE_DIR/$APP_NAME` > $PLATFORM_CACHE_DIR/src/cache_files.txt

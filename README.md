@@ -37,12 +37,13 @@ All the platform.sh specifics are in:
 * `.platform.app.yaml`
 * `build.sh` : If you want to install plugins to Odoo, this would be the place to add your own logic to install python plugins
 * `deploy.sh` : This is mainly used to generate the demo. Once you have a production system you should not use this unless you want to start from scratch
-* `odoo_wssgi.py`: This file contains the various argumennts require by odoo. In particular: directories for plugins, where to write the files, etc. Customize as needed
-* `conf/uwsgi.py`: Tune this file according to your needs. The default one should work for most use cases.
+* `run.sh`: It uses the platform.sh generated environment variable to launch odoo
 
 ## What to do once it is deployed
 
 * Log in into the admin with `admin`, `admin` and change your password 
+* Then you can install apps (top left corner)
+* You can also test the user view with the user `demo`, `demo`
 * Upgrades from the web interface are not working. 
 * Most certainly not ready for production: consider it experimental or a starting point to meet your needs.
 

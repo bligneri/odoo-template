@@ -9,25 +9,34 @@ name: 'odoo'
 # The runtime the application uses.
 type: 'python:3.11'
 
+dependencies:
+    python3:
+        platformshconfig: "2.4"
+
+variables:
+    # Add variables environment: https://docs.platform.sh/create-apps/app-reference.html#variables
+    env:
+        ODOO_VERSION: '16.0'
+
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
-    build: !include
-      type: string
-      path: build.sh
+    build: |
+        set -eu
+        git clone https://github.com/odoo/odoo --depth 1 --branch $ODOO_VERSION "$PLATFORM_CACHE_DIR/odoo-$ODOO_VERSION" || echo "$PLATFORM_CACHE_DIR/odoo-$ODOO_VERSION already exists. Skipping cloning."
+        cd "$PLATFORM_CACHE_DIR/odoo-$ODOO_VERSION" && pip install ./
+        rsync -az --exclude=.git $PLATFORM_CACHE_DIR/odoo-$ODOO_VERSION/* $PLATFORM_APP_DIR/src/
 
-    deploy: !include
-      type: string
-      path: deploy.sh
+    deploy: |
+        set -eu
+        ./deploy.py
 
 web:
     upstream:
       socket_family: tcp
       protocol: http
     commands:
-      start: !include
-        type: string
-        path: run.sh 
+        start: './serve.py'
 
 # The relationships of the application with services or other applications.
 #

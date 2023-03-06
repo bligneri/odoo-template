@@ -8,5 +8,5 @@ DB_NAME=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].pa
 
 
 # We are launching Odoo using the platform.sh variables for connexion and port
-cd ./src/odoo/
+cd $HOME/src/odoo/
 python3.11 ./odoo-bin --db_host=$DB_HOST --db_user=$DB_USER --db_password="$DB_PASSWORD" -d $DB_NAME --http-port=$PORT --syslog 

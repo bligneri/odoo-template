@@ -1,36 +1,51 @@
-# Basic odoo template servec with UWSGI for Platform.sh
+# Basic odoo template for Platform.sh
 
-<p>
 <a href="https://console.platform.sh/projects/create-project/?template=https://github.com/bendll/odoo-template&utm_campaign=deploy_on_platform?utm_medium=button&utm_source=affiliate_links&utm_content=https://github.com/bendll/odoo-template" target="_blank" title="Deploy with Platform.sh"><img src="https://platform.sh/images/deploy/deploy-button-lg-blue.svg"></a>
-</a>
-</p>
 
-This template provides a basic installation of odoo. It includes the `platformshconfig` package and demonstrates using it in the WSGI runner
-
-Odoo is an open source ERP with a large user base.
+This template provides a basic installation of odoo. 
 
 ## Features
 
 * Python 3.11
 * PostgreSQL 15
 * Automatic TLS certificates
-* Pipfile-based build
+* Build from odoo sources via `pip install`
 
-Because odoo is a python binary, it is installed directly into `/app/.global/bin/odoo` and is part of the PATH of every shell and program. 
+## Odoo version selection
 
-The install is quite fast because all the python dependencies are cached and will only be updated if a new version is available.
+You can change the `odoo_version` text file and it should work
+
+It has only been tested with the `16.0` version of odoo. 
+
+For other versions, you may have to tweak:
+* The python version of the application 
+* deploy.sh: The command line options of the oddo initialization
+* run.sh: The command line options to launch odoo
+
+## Building should be fast after the first pass
+
+The install is quite fast because we are using the platform.sh cache system:
+* After the first `git clone` of the Odoo tree, it should be a simple quick git check for the files (as the branch is fixed and should not change)
+* Every python module is cached (wheel files) including `odoo` itself
+* When new versions will be launched, the build chain will fetch the updated packages and save them for future usage
 
 ## Customizations
 
-If using this project as a reference for your own existing project, replicate the changes below to your project.
+If using this project as a reference for your own existing project.
 
-All the platform.sh specifics are in:
-* `.platform.app.yaml`
+The platform.sh specifics are:
+* `.platform.app.yaml` : The configuration of the odoo app server and the posgresql database
 * `build.sh` : If you want to install plugins to Odoo, this would be the place to add your own logic to install python plugins
 * `deploy.sh` : This is mainly used to generate the demo. Once you have a production system you should not use this unless you want to start from scratch
-* `odoo_wssgi.py`: This file contains the various argumennts require by odoo. In particular: directories for plugins, where to write the files, etc. Customize as needed
-* `conf/uwsgi.py`: Tune this file according to your needs. The default one should work for most use cases.
+* `run.sh`: It uses the platform.sh generated environment variable to launch odoo
 
+## What to do once it is deployed
+
+* Log in into the admin with `admin`, `admin` and change your password 
+* Then you can install apps (top left corner)
+* You can also test the user view with the user `demo`, `demo`
+* Upgrades from the web interface are not working. 
+* Most certainly not ready for production: consider it experimental or a starting point to meet your needs.
 
 ## References
 

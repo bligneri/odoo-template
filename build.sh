@@ -1,25 +1,23 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -eu
 
 # get the odoo version to clone
 ODOOVERSION=$(cat odoo_version)
 
-PATH_ODOO="/tmp/"
-
 # Update to the latest pip
 python3.11 -m pip install --upgrade pip
 
-# DEBUG
-#Delete the current ./odoo
-#rm -rf ./odoo
-# END DEBUG
+# Note: the upgrade works but the updated version of pip is not used
+# => most cerainly a PATH issue
 
 #clone the repo
-git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PATH_ODOO/odoo
+# Note: Should be smarter and only download the code if not there for the $ODOOVERSION
+# If the code is already thre, no need to change it
+# Using the PLATFORM.sh cache to avoir redownloading each time
 
-# Install dependencies
-cd $PATH_ODOO/odoo
-pip install ./
+git clone https://www.github.com/odoo/odoo --depth 1 --branch $ODOOVERSION $PLATFORM_CACHE_DIR/odoo
 
-# Debug our build process: is there something in /tmp ?
-echo `ls -la /tmp/odoo` > /tmp/files
-echo `ls -la /tmp/odoo/odoo` >> /tmp/files
+# Install dependencies 
+cd $PLATFORM_CACHE_DIR/odoo && pip install ./
+
+#Copy into the src accessible directory
+rsync -az --exclude=.git $PLATFORM_CACHE_DIR/$APP_NAME/* $PLATFORM_APP_DIR/src/

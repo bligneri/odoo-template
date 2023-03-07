@@ -20,7 +20,7 @@ DB_NAME=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].pa
 # Do nothint in this case: server is ready to run / nothing to deploy
 # To redeploy: `platform ssh` and then `rm -rf ./local/share/Odoo`
 # You also need to drop your database (or it will cause errors)
-DIRECTORY="$HOME/$PLATFORM_APPLICATION_NAME/.local/share/Odoo"
+DIRECTORY="$HOME/.local/share/Odoo"
 
 if [ ! -d "$DIRECTORY" ]; then
 	cd ./src/odoo/
